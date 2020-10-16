@@ -44,10 +44,9 @@ const getPageIdsFromPokemonSpecies = ({
 
   if (startIndex < 0) return [];
   if (endIndex > totalItems - 1) endIndex = totalItems - 1;
-  if (endIndex <= startIndex) return [];
-  return pokemonSpecies
-    .slice(startIndex, endIndex + 1)
-    .map(pokemonSpecie => getPokemonIdFromPokemonUrl(pokemonSpecie.url));
+  if (endIndex < startIndex) return [];
+
+  return pokemonSpecies.slice(startIndex, endIndex + 1);
 };
 
 const getPokemonsPage = async ({ setPageLoading, ids }) => {
@@ -111,7 +110,15 @@ const Home = () => {
         setDataSource,
         setPageLoading,
         ids: getPageIdsFromPokemonSpecies({
-          pokemonSpecies,
+          pokemonSpecies: pokemonSpecies
+            .map(pokemonSpecie => getPokemonIdFromPokemonUrl(pokemonSpecie.url))
+            .sort((pokemonA, pokemonB) => {
+              const pokemonAId = parseInt(pokemonA, 10);
+              const pokemonBId = parseInt(pokemonB, 10);
+              if (pokemonAId === pokemonBId) return 0;
+              if (pokemonAId < pokemonBId) return -1;
+              return 1;
+            }),
           page: pagination.current,
           totalItems: pagination.total,
           perPage: pagination.pageSize
