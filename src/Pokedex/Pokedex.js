@@ -22,7 +22,7 @@ const columns = [
     title: "Type(s)",
     key: "types",
     dataIndex: "types",
-    render: types => types.map(type => _.get(type, ["type", "name"])).join(', ')
+    render: types => types.map(type => _.get(type, ["type", "name"])).join(", ")
   }
 ];
 
@@ -57,17 +57,17 @@ const getPokemonsPage = async ({ setPageLoading, ids }) => {
   }, []);
 
   const pokemonsValues = await Promise.allSettled(pokemonsPromises);
-
   const pokemons = await Promise.all(
     pokemonsValues.map(async current => {
-      if (!current.status === "fulfilled") return null;
+      if (!current.status === "fulfilled") return undefined;
+      if (!_.get(current, ["value", "json"])) return undefined;
       const pokemon = await current.value.json();
       return pokemon;
     })
   );
   setPageLoading(false);
 
-  return pokemons;
+  return pokemons.filter(pokemon => pokemon !== undefined);
 };
 
 const setDataSourceFromPokemonsIds = async ({
