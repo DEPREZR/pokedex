@@ -33,8 +33,8 @@ const getPokemonIdFromPokemonUrl = pokemonUrl => {
   return res[1];
 };
 
-const getPageIdsFromPokemonSpecies = ({
-  pokemonSpecies,
+const getPageIdsFromPokemonIds = ({
+  pokemonIds,
   page,
   totalItems,
   perPage
@@ -46,7 +46,7 @@ const getPageIdsFromPokemonSpecies = ({
   if (endIndex > totalItems - 1) endIndex = totalItems - 1;
   if (endIndex < startIndex) return [];
 
-  return pokemonSpecies.slice(startIndex, endIndex + 1);
+  return pokemonIds.slice(startIndex, endIndex + 1);
 };
 
 const getPokemonsPage = async ({ setPageLoading, ids }) => {
@@ -109,8 +109,8 @@ const Home = () => {
       setDataSourceFromPokemonsIds({
         setDataSource,
         setPageLoading,
-        ids: getPageIdsFromPokemonSpecies({
-          pokemonSpecies: pokemonSpecies
+        ids: getPageIdsFromPokemonIds({
+          pokemonIds: pokemonSpecies
             .map(pokemonSpecie => getPokemonIdFromPokemonUrl(pokemonSpecie.url))
             .sort((pokemonA, pokemonB) => {
               const pokemonAId = parseInt(pokemonA, 10);
