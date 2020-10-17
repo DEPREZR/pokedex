@@ -91,6 +91,7 @@ const Home = () => {
     pageSize: 10
   });
   const [dataSource, setDataSource] = useState([]);
+  const [orderedPokemonIds, setOrderedPokemonIds] = useState(null);
   const [pageLoading, setPageLoading] = useState(false);
   const { height } = useWindowSize();
 
@@ -101,31 +102,35 @@ const Home = () => {
         current: 1,
         total: pokemonSpecies.length
       }));
+
+      setOrderedPokemonIds(
+        pokemonSpecies
+          .map(pokemonSpecie => getPokemonIdFromPokemonUrl(pokemonSpecie.url))
+          .sort((pokemonA, pokemonB) => {
+            const pokemonAId = parseInt(pokemonA, 10);
+            const pokemonBId = parseInt(pokemonB, 10);
+            if (pokemonAId === pokemonBId) return 0;
+            if (pokemonAId < pokemonBId) return -1;
+            return 1;
+          })
+      );
     }
   }, [pokemonSpecies]);
 
   useEffect(() => {
-    if (pokemonSpecies && pokemonSpecies.length) {
+    if (orderedPokemonIds && orderedPokemonIds.length) {
       setDataSourceFromPokemonsIds({
         setDataSource,
         setPageLoading,
         ids: getPageIdsFromPokemonIds({
-          pokemonIds: pokemonSpecies
-            .map(pokemonSpecie => getPokemonIdFromPokemonUrl(pokemonSpecie.url))
-            .sort((pokemonA, pokemonB) => {
-              const pokemonAId = parseInt(pokemonA, 10);
-              const pokemonBId = parseInt(pokemonB, 10);
-              if (pokemonAId === pokemonBId) return 0;
-              if (pokemonAId < pokemonBId) return -1;
-              return 1;
-            }),
+          pokemonIds: orderedPokemonIds,
           page: pagination.current,
           totalItems: pagination.total,
           perPage: pagination.pageSize
         })
       });
     }
-  }, [pagination, pokemonSpecies]);
+  }, [pagination, orderedPokemonIds]);
 
   return (
     <Table
