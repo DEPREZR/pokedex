@@ -139,7 +139,7 @@ const Home = () => {
       pagination={pagination}
       loading={generationLoading || pageLoading}
       onChange={getHandleTableChange(setPagination)}
-      scroll={{ y: height - 180, scrollToFirstRowOnChange: true }}
+      scroll={{ y: height - 180 - 15 - 47, scrollToFirstRowOnChange: true }}
     />
   );
 };
