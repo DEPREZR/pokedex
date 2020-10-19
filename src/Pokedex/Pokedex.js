@@ -51,9 +51,9 @@ const getPageIdsFromPokemonIds = ({
 
 const getPokemonsPage = async ({ setPageLoading, ids }) => {
   setPageLoading(true);
-  const pokemonsPromises = ids.reduce((acc, current) => {
-    return [...acc, get({ url: `pokemon/${current}` })];
-  }, []);
+  const pokemonsPromises = ids.map(current =>
+    get({ url: `pokemon/${current}` })
+  );
 
   const pokemonsValues = await Promise.allSettled(pokemonsPromises);
   const pokemons = await Promise.all(
