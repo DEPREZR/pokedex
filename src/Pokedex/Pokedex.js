@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "antd";
 import useGet from "apiHelpers/hooks/useGet";
-import _ from "lodash";
 import { get } from "apiHelpers";
 import useWindowSize from "hooks/useWindowSize";
 
@@ -22,7 +21,7 @@ const columns = [
     title: "Type(s)",
     key: "types",
     dataIndex: "types",
-    render: types => types.map(type => _.get(type, ["type", "name"])).join(", ")
+    render: types => types.map(type => type?.type?.name?.join?.(", "))
   }
 ];
 
@@ -59,7 +58,7 @@ const getPokemonsPage = async ({ setPageLoading, ids }) => {
   const pokemons = await Promise.all(
     pokemonsValues.map(async current => {
       if (!current.status === "fulfilled") return undefined;
-      if (!_.get(current, ["value", "json"])) return undefined;
+      if (!current?.value?.json) return undefined;
       const pokemon = await current.value.json();
       return pokemon;
     })
@@ -85,7 +84,7 @@ const getHandleTableChange = setPagination => pagination => {
 
 const Home = () => {
   const { data, loading: generationLoading } = useGet("generation/1");
-  const pokemonSpecies = _.get(data, ["pokemon_species"]);
+  const pokemonSpecies = data?.pokemon_species;
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 10
