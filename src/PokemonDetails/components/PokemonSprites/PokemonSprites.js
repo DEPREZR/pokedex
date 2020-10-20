@@ -38,7 +38,7 @@ const PokemonSprites = () => {
 
   return (
     <Card
-      style={{ width: 200, marginRight: 16, textAlign: "center" }}
+      style={{ textAlign: "center" }}
       tabList={tabList}
       type="inner"
       activeTabKey={selectedTabKey}
