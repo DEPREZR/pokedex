@@ -20,7 +20,7 @@ const PokemonDetails = () => {
         <PokemonDetailsContext.Provider value={pokemon}>
           <Card title={pokemon.name}>
             <div className="d-flex">
-            <PokemonSprites />
+            <div style={{ height: 350 }}><PokemonSprites /></div>
             <PokemonStats />
             </div>
           </Card>
