@@ -8,9 +8,9 @@ const statsPrettyNames = {
   hp: "Base HP",
   attack: "Base attack",
   defense: "Base defense",
-  "special-attack": "Base pecial attack",
-  "special-defense": "Base pecial defense",
-  speed: "Base Speed"
+  "special-attack": "Base special attack",
+  "special-defense": "Base special defense",
+  speed: "Base speed"
 };
 
 const PokemonStats = () => {
@@ -23,14 +23,14 @@ const PokemonStats = () => {
           style={{ width: 300 }}
           className="d-flex flex-row justify-content-between"
         >
-          <Text strong>type(s)</Text>
+          <Text strong>Type(s)</Text>
           {pokemon.types.map(type => type?.type?.name).join(", ")}
         </List.Item>
         <List.Item
           style={{ width: 300 }}
           className="d-flex flex-row justify-content-between"
         >
-          <Text strong>weight</Text>
+          <Text strong>Weight</Text>
           {pokemon.weight}
         </List.Item>
         <Divider />
