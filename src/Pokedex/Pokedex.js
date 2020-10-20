@@ -3,6 +3,7 @@ import { Table } from "antd";
 import useGet from "apiHelpers/hooks/useGet";
 import { get } from "apiHelpers";
 import useWindowSize from "hooks/useWindowSize";
+import { useHistory } from "react-router-dom";
 
 const columns = [
   { title: "Order", dataIndex: "order", key: "order" },
@@ -21,7 +22,7 @@ const columns = [
     title: "Type(s)",
     key: "types",
     dataIndex: "types",
-    render: types => types.map(type => type?.type?.name?.join?.(", "))
+    render: types => types.map(type => type?.type?.name).join(", ")
   }
 ];
 
@@ -82,6 +83,10 @@ const getHandleTableChange = setPagination => pagination => {
   setPagination(prevPagination => ({ ...prevPagination, ...pagination }));
 };
 
+const getOnClickRow = ({ history, pokemon }) => () => {
+  if (pokemon?.id) history.push(`/pokemon/${pokemon?.id}`);
+};
+
 const Home = () => {
   const { data, loading: generationLoading } = useGet("generation/1");
   const pokemonSpecies = data?.pokemon_species;
@@ -93,6 +98,7 @@ const Home = () => {
   const [orderedPokemonIds, setOrderedPokemonIds] = useState(null);
   const [pageLoading, setPageLoading] = useState(false);
   const { height } = useWindowSize();
+  const history = useHistory();
 
   useEffect(() => {
     if (pokemonSpecies && pokemonSpecies.length) {
@@ -139,6 +145,11 @@ const Home = () => {
       loading={generationLoading || pageLoading}
       onChange={getHandleTableChange(setPagination)}
       scroll={{ y: height - 180 - 15 - 47, scrollToFirstRowOnChange: true }}
+      onRow={(record) => {
+        return {
+          onClick: getOnClickRow({ history, pokemon: record })
+        };
+      }}
     />
   );
 };

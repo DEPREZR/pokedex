@@ -5,6 +5,7 @@ import Home from "Home";
 import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
 import { Layout } from "antd";
 import Menu from "Menu";
+import PokemonDetails from "PokemonDetails";
 
 const { Content } = Layout;
 
@@ -17,6 +18,10 @@ function App() {
             <Route exact path="/home">
               <Menu />
               <Home />
+            </Route>
+            <Route path="/pokemon/:pokemonId">
+              <Menu />
+              <PokemonDetails />
             </Route>
             <Route exact path="/pokedex">
               <Menu />
