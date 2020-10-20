@@ -36,6 +36,7 @@ const PokemonStats = () => {
         <Divider />
         {pokemon.stats.map(stat => (
           <List.Item
+            key={stat.stat.name}
             style={{ width: 300 }}
             className="d-flex flex-row justify-content-between"
           >
