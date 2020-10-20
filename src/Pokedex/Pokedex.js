@@ -150,6 +150,7 @@ const Home = () => {
           onClick: getOnClickRow({ history, pokemon: record })
         };
       }}
+      rowClassName="custom-table-clickable-row"
     />
   );
 };

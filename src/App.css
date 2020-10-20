@@ -1,2 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~antd/dist/antd.css';
+
+.custom-table-clickable-row {
+  cursor: pointer;
+}
