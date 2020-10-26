@@ -1,4 +1,3 @@
-import React from "react";
 import { usePokemonDetailsContext } from "PokemonDetails";
 import { Card, List, Typography, Divider } from "antd";
 

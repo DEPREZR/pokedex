@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { usePokemonDetailsContext } from "PokemonDetails";
 import { Card } from "antd";
 

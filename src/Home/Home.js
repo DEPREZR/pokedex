@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Button, List } from "antd";
 import pokemonLogo from "resources/images/pokemon-logo.svg.png";
 import useWindowSize from "hooks/useWindowSize";

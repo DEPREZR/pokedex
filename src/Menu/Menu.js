@@ -1,4 +1,3 @@
-import React from "react";
 import { Menu as AntdMenu } from "antd";
 import { useLocation, useHistory } from "react-router-dom";
 

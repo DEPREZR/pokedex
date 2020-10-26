@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { createContext, useContext } from "react";
 import { useParams } from "react-router-dom";
 import useGet from "apiHelpers/hooks/useGet";
 import Loader from "Loader";
@@ -6,7 +6,7 @@ import PokemonSprites from "./components/PokemonSprites";
 import PokemonStats from "./components/PokemonStats";
 import { Card } from "antd";
 
-const PokemonDetailsContext = React.createContext();
+const PokemonDetailsContext = createContext();
 
 export const usePokemonDetailsContext = () => useContext(PokemonDetailsContext);
 
