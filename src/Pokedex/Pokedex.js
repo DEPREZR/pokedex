@@ -62,7 +62,7 @@ const Pokedex = () => {
   const { data, loading: generationLoading } = useGet("generation/1");
   const {
     result: { data: pokemonsPage, loading: pokemonsPageLoading },
-    call,
+    call: getPokemonsPage,
   } = useGetAll(pageUrls);
   const pokemonSpecies = data?.pokemon_species;
   const [pagination, setPagination] = useState({
@@ -109,8 +109,8 @@ const Pokedex = () => {
   }, [pagination, orderedPokemonIds]);
 
   useEffect(() => {
-    if (pageUrls) call();
-  }, [pageUrls, call]);
+    if (pageUrls) getPokemonsPage();
+  }, [pageUrls, getPokemonsPage]);
 
   return (
     <Table
