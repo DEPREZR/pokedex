@@ -1,5 +1,5 @@
 import { get } from "apiHelpers";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 const useGetAll = (urls) => {
   const [result, setResult] = useState({
@@ -11,7 +11,9 @@ const useGetAll = (urls) => {
   const memoizedGetAll = useCallback(async () => {
     setResult((previousResult) => ({ ...previousResult, loading: true }));
 
-    const responses = await Promise.all(urls.map((url) => get(url)));
+    const responses = await Promise.all(urls.map((url) => {
+      return get({ url });
+    }));
 
     const results = await Promise.all(
       responses.map(async (response) => {
@@ -54,11 +56,7 @@ const useGetAll = (urls) => {
     });
   }, [urls]);
 
-  useEffect(() => {
-    memoizedGetAll();
-  }, [memoizedGetAll]);
-
-  return result;
+  return { result, call: memoizedGetAll };
 };
 
 export default useGetAll;
