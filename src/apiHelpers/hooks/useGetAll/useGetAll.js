@@ -11,9 +11,7 @@ const useGetAll = (urls) => {
   const memoizedGetAll = useCallback(async () => {
     setResult((previousResult) => ({ ...previousResult, loading: true }));
 
-    const responses = await Promise.all(urls.map((url) => {
-      return get({ url });
-    }));
+    const responses = await Promise.all(urls.map((url) => get({ url })));
 
     const results = await Promise.all(
       responses.map(async (response) => {
