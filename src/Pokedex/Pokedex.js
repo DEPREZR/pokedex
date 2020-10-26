@@ -57,14 +57,11 @@ const getOnClickRow = ({ history, pokemon }) => () => {
   if (pokemon?.id) history.push(`/pokemon/${pokemon?.id}`);
 };
 
-const Home = () => {
+const Pokedex = () => {
   const [pageUrls, setPageUrls] = useState(null);
   const { data, loading: generationLoading } = useGet("generation/1");
   const {
-    result: {
-      data: pokemonsPage,
-      loading: pokemonsPageLoading,
-    },
+    result: { data: pokemonsPage, loading: pokemonsPageLoading },
     call,
   } = useGetAll(pageUrls);
   const pokemonSpecies = data?.pokemon_species;
@@ -72,7 +69,6 @@ const Home = () => {
     current: 1,
     pageSize: 10,
   });
-  const [dataSource, setDataSource] = useState([]);
   const [orderedPokemonIds, setOrderedPokemonIds] = useState(null);
   const { height } = useWindowSize();
   const history = useHistory();
@@ -116,13 +112,9 @@ const Home = () => {
     if (pageUrls) call();
   }, [pageUrls, call]);
 
-  useEffect(() => {
-    if(pokemonsPage) setDataSource(pokemonsPage);
-  }, [pokemonsPage])
-
   return (
     <Table
-      dataSource={dataSource}
+      dataSource={pokemonsPage || []}
       columns={columns}
       pagination={pagination}
       loading={generationLoading || pokemonsPageLoading}
@@ -137,4 +129,4 @@ const Home = () => {
     />
   );
 };
-export default Home;
+export default Pokedex;
