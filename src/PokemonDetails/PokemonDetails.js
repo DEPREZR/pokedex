@@ -6,7 +6,7 @@ import PokemonSprites from "./components/PokemonSprites";
 import PokemonStats from "./components/PokemonStats";
 import { Card } from "antd";
 
-const PokemonDetailsContext = createContext();
+export const PokemonDetailsContext = createContext();
 
 export const usePokemonDetailsContext = () => useContext(PokemonDetailsContext);
 

@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokemonStats renders correctly 1`] = `
+<Card
+  style={
+    Object {
+      "width": 348,
+    }
+  }
+>
+  <List
+    split={false}
+  >
+    <Item
+      className="d-flex flex-row justify-content-between"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Type(s)
+      </Text>
+      electric
+    </Item>
+    <Item
+      className="d-flex flex-row justify-content-between"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Weight
+      </Text>
+      60
+    </Item>
+    <Divider />
+    <Item
+      className="d-flex flex-row justify-content-between"
+      key="hp"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Base HP
+      </Text>
+      35
+    </Item>
+    <Item
+      className="d-flex flex-row justify-content-between"
+      key="attack"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Base attack
+      </Text>
+      55
+    </Item>
+    <Item
+      className="d-flex flex-row justify-content-between"
+      key="defense"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Base defense
+      </Text>
+      40
+    </Item>
+    <Item
+      className="d-flex flex-row justify-content-between"
+      key="special-attack"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Base special attack
+      </Text>
+      50
+    </Item>
+    <Item
+      className="d-flex flex-row justify-content-between"
+      key="special-defense"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Base special defense
+      </Text>
+      50
+    </Item>
+    <Item
+      className="d-flex flex-row justify-content-between"
+      key="speed"
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        strong={true}
+      >
+        Base speed
+      </Text>
+      90
+    </Item>
+  </List>
+</Card>
+`;
