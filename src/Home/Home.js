@@ -24,20 +24,22 @@ const Home = () => {
         </List.Item>
         <List.Item>
           <p className="text-center mx-auto">
-            And this is exactly the purpose of the pokedex.
+            And this is exactly the purpose of this first generation's pokedex.
           </p>
         </List.Item>
         <List.Item>
           <p className="text-center mx-auto">
-            This is like an encyclopedia telling us all about these little
-            bastards. The pokedex will give you information about what each one
-            is looking like, about names, and about types.
+            This pokedex is a simple example of react application, using react ui router and ant design.
           </p>
         </List.Item>
         <List.Item>
           <p className="text-center mx-auto">
-            If you want more information, please go on a more serious website
-            about the subject.
+            In the list, you can click on a row to see details about corresponding pokemon.
+          </p>
+        </List.Item>
+        <List.Item>
+          <p className="text-center mx-auto">
+            It is powered by <a target="_blank" rel="noopener noreferrer" href="https://pokeapi.co/">PokeAPI</a>
           </p>
         </List.Item>
       </List>
