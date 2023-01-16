@@ -3,7 +3,7 @@ import { Table } from "antd";
 import useGet from "apiHelpers/hooks/useGet";
 import useGetAll from "apiHelpers/hooks/useGetAll";
 import useWindowSize from "hooks/useWindowSize";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
   { title: "Order", dataIndex: "order", key: "order" },
@@ -53,8 +53,8 @@ const getHandleTableChange = (setPagination) => (pagination) => {
   setPagination((prevPagination) => ({ ...prevPagination, ...pagination }));
 };
 
-const getOnClickRow = ({ history, pokemon }) => () => {
-  if (pokemon?.id) history.push(`/pokemon/${pokemon?.id}`);
+const getOnClickRow = ({ navigate, pokemon }) => () => {
+  if (pokemon?.id) navigate(`/pokemon/${pokemon?.id}`);
 };
 
 const Pokedex = () => {
@@ -71,7 +71,7 @@ const Pokedex = () => {
   });
   const [orderedPokemonIds, setOrderedPokemonIds] = useState(null);
   const { height } = useWindowSize();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (pokemonSpecies && pokemonSpecies.length) {
@@ -122,7 +122,7 @@ const Pokedex = () => {
       scroll={{ y: height - 180 - 15 - 47, scrollToFirstRowOnChange: true }}
       onRow={(record) => {
         return {
-          onClick: getOnClickRow({ history, pokemon: record }),
+          onClick: getOnClickRow({ navigate, pokemon: record }),
         };
       }}
       rowClassName="custom-table-clickable-row"

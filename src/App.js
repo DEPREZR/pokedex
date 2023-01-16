@@ -1,7 +1,7 @@
 import "./App.css";
 import Pokedex from "Pokedex";
 import Home from "Home";
-import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
+import { HashRouter, Routes, Navigate, Route } from "react-router-dom";
 import { Layout } from "antd";
 import Menu from "Menu";
 import PokemonDetails from "PokemonDetails";
@@ -13,23 +13,12 @@ function App() {
     <Layout>
       <Content style={{ padding: "30px", minHeight: "100vh" }}>
         <HashRouter>
-          <Switch>
-            <Route exact path="/home">
-              <Menu />
-              <Home />
-            </Route>
-            <Route path="/pokemon/:pokemonId">
-              <Menu />
-              <PokemonDetails />
-            </Route>
-            <Route exact path="/pokedex">
-              <Menu />
-              <Pokedex />
-            </Route>
-            <Route>
-              <Redirect to="/home" />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route exact path="/home" element={<><Menu /><Home /></>} />
+            <Route path="/pokemon/:pokemonId" element={<><Menu /><PokemonDetails /></>} />
+            <Route exact path="/pokedex" element={<><Menu /><Pokedex /></>} />
+            <Route path="/" element={<Navigate to="/home" />} />
+          </Routes>
         </HashRouter>
       </Content>
     </Layout>

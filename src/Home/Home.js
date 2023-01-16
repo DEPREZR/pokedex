@@ -1,11 +1,11 @@
 import { Row, Button, List } from "antd";
 import pokemonLogo from "resources/images/pokemon-logo.svg.png";
 import useWindowSize from "hooks/useWindowSize";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { height } = useWindowSize();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -47,7 +47,7 @@ const Home = () => {
         <Button
           type="primary"
           onClick={() => {
-            history.push("/pokedex");
+            navigate("/pokedex");
           }}
         >
           Show me that
