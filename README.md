@@ -1,4 +1,4 @@
-https://react-antd-pokedex.herokuapp.com/#/home
+https://deprezr.github.io/pokedex/#/home
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
